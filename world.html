@@ -171,12 +171,11 @@
 	// 175 countries
 	
 	var ascending = true;
-	var c = 0;
 	var bool = 0;
 	
 	function tableCreationFunction() {
 			
-		setTimeout(sortTable, 8000, 0);	
+		// setTimeout(sortTable, 8000, 0);	
 			
 		var countriesArray = [
 			['AFG', 'Afghanistan'], 
@@ -598,13 +597,14 @@
 				newMobileTableRow.appendChild(newMobileTableMasksHeader);
 				newMobileTableRow.appendChild(newMobileTableMasks);
 				
-				c++;
-				// console.log(c);
+				while (document.getElementById("desktop-countries-table-body").childElementCount == 175 && bool == 0) {
+					sortTable(0); bool++;
+				}
 				
 			}
 		}
 	}
-	
+		
 	// -------------------------------------------------------
 	
 	function sortTable(n) { // Function takes in an argument of "n"
@@ -746,11 +746,44 @@
 		console.log("Length: " + table.rows.length);
 	}
 	
+	function worldwideStats() {
+		let requestURL = 'https://api.covid19api.com/summary';
+		// API URL
+			
+		let request = new XMLHttpRequest(); 
+		// XMLHttpRequest (XHR) object assigned to variable
+			
+		request.open('GET', requestURL); 
+		// XMLHttpRequest.open() function, first argument is a method and second is a URL (string variable here)
+			
+		request.responseType = 'json'; 
+		// "The response is a JavaScript object created by parsing the contents of received data as JSON."
+			
+		request.send(); 
+		// Sends request to server
+						
+		request.onload = function() {
+			const result = request.response;
+			console.log(result);
+			for (y = 0; y < document.getElementsByClassName("world-positive-cases").length; y++) {
+				document.getElementsByClassName("world-positive-cases")[y].innerHTML = result.Global.TotalConfirmed;
+			}
+			for (y = 0; y < document.getElementsByClassName("world-recovered-cases").length; y++) {
+				document.getElementsByClassName("world-recovered-cases")[y].innerHTML = result.Global.TotalRecovered;
+			}
+			for (y = 0; y < document.getElementsByClassName("world-deaths").length; y++) {
+				document.getElementsByClassName("world-deaths")[y].innerHTML = result.Global.TotalDeaths;
+			}
+		}
+		tableCreationFunction();
+	}
+	
+	
 	// -------------------------------------------------------	
 		
 	</script>
 </head>
-<body onload="tableCreationFunction()">
+<body onload="worldwideStats()">
 	<div id="header">
 		<a href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
 		<a href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
@@ -767,15 +800,15 @@
 			<tbody>
 				<tr>
 					<th class="table-header">Positive Cases</th>
-					<th>36,297,838</th>
+					<th class="world-positive-cases">36,297,838</th>
 				</tr>
 				<tr>
 					<th class="table-header">Recovered Cases</th>
-					<th>27,314,855</th>
+					<th class="world-recovered-cases">27,314,855</th>
 				</tr>
 				<tr>
 					<th class="table-header">Deaths</th>
-					<th>1,058,130</th>
+					<th class="world-deaths">1,058,130</th>
 				</tr>
 			</tbody>
 		</table>
@@ -789,9 +822,9 @@
 					<th class="table-header">Deaths</th>
 				</tr>
 				<tr>
-					<th>36,297,838</th>
-					<th>27,314,855</th>
-					<th>1,058,130</th>
+					<th class="world-positive-cases"></th>
+					<th class="world-recovered-cases">27,314,855</th>
+					<th class="world-deaths">1,058,130</th>
 				</tr>
 			</tbody>
 		</table>

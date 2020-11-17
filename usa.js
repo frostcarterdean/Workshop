@@ -1,29 +1,34 @@
 
 /*---FETCH USA DATA-----------------------------------------------------------------*/
-let requestURL = 'https://api.covidtracking.com/v1/us/current.json';
-let request = new XMLHttpRequest(); 
-request.open('GET', requestURL); 
-request.responseType = 'json'; 
-request.send(); 
-request.onload = function() { // Occurs after send function above
-  var result = request.response;
-  console.log(result);
 
-  usaNewPos = document.getElementById("usaNewPos");
-  usaNewPos.innerHTML = result[0]['positiveIncrease'];
+function usaTable() {
 
-  usaPos = document.getElementById("usaPos");
-  usaPos.innerHTML = result[0]['positive'];
+	let requestURL = 'https://api.covidtracking.com/v1/us/current.json';
+	let request = new XMLHttpRequest(); 
+	request.open('GET', requestURL); 
+	request.responseType = 'json'; 
+	request.send(); 
+	request.onload = function() { // Occurs after send function above
+	  var result = request.response;
+	  console.log(result);
 
-  usaRec = document.getElementById("usaRec");
-  usaRec.innerHTML = result[0]['recovered'];
+	  usaNewPos = document.getElementById("usaNewPos");
+	  usaNewPos.innerHTML = result[0]['positiveIncrease'];
 
-  usaNewDeath = document.getElementById("usaNewDeath");
-  usaNewDeath.innerHTML = result[0]['deathIncrease'];
+	  usaPos = document.getElementById("usaPos");
+	  usaPos.innerHTML = result[0]['positive'];
 
-  usaDeath = document.getElementById("usaDeath");
-  usaDeath.innerHTML = result[0]['death'];
+	  usaRec = document.getElementById("usaRec");
+	  usaRec.innerHTML = result[0]['recovered'];
 
-  console.log(usaNewPos);
+	  usaNewDeath = document.getElementById("usaNewDeath");
+	  usaNewDeath.innerHTML = result[0]['deathIncrease'];
+
+	  usaDeath = document.getElementById("usaDeath");
+	  usaDeath.innerHTML = result[0]['death'];
+
+	  console.log(usaNewPos);
+
+	}
 
 }
