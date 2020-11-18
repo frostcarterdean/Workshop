@@ -12,7 +12,6 @@
 	<script>
 	
 	var placeholder;
-
 	
 	function countiesTable() {
 		let requestURL = 'https://data.covidactnow.org/latest/us/counties.WEAK_INTERVENTION.json';
@@ -92,8 +91,6 @@
 		<a href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
 	</div>
 	
-	<!-- ------------------------------ -->
-	
 <!-------- US STATISTICS-------------------------------------------------->
 	<h1>The United States</h1>
 	<table id="us-stats-desktop">
@@ -137,7 +134,7 @@
 <!-----------STATE DROPDOWN MENU AND COUNTY INFO --------------------------->	
 	<br><br>
 	<div id="counties-tables-select">
-		<select id="state" onchange="countiesSelectOutput()">
+		<select id="state" onchange="countiesSelectOutput(); getStateInfo()">
 			<option value="Alabama">Alabama</option>
 			<option value="Alaska">Alaska</option>
 			<option value="Arizona">Arizona</option>
@@ -189,34 +186,21 @@
 			<option value="Wisconsin">Wisconsin</option>
 			<option value="Wyoming">Wyoming</option>
 		</select>
-
+<!-----------STATE INFO FOR MOBILE --------------------------->	
 		<div id="states-stats-mobile">
 			<table>
 				<tbody>
-					<tr>
-						<th class="table-header">New Positive Cases</th>
-					</tr>
-					<tr>
-						<th id="mobile-state-newpos"></th>
-					</tr>
-					<tr>
-						<th class="table-header">Total Positive Cases</th>
-					</tr>
-					<tr>
-						<th id="mobile-state-totalpos"></th>
-					</tr>
+					<tr><th class="table-header">New Positive Cases</th></tr>
+					<tr><th id="mobile-state-newpos"></th></tr>
+					<tr><th class="table-header">Total Positive Cases</th></tr>
+					<tr><th id="mobile-state-totalpos"></th></tr>
 				</tbody>
 			</table>
 		</div>
-
-
-
-		
+<!-----------COUNTY SELECTOR AND INFO--------------------------->	
 		<select id="county" onchange="countiesTableOutput()">
 		</select>
 	</div>
-	
-	<!-- ------------------------------ -->
 	
 	<br>
 	<div id="counties-tables">

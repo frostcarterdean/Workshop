@@ -1,67 +1,75 @@
+var statesArray = [ 
+	'Alaska', 
+	'Alabama',
+	'Arkansas', 
+	'AS', 
+	'Arizona',
+	'California', 
+	'Colorado',
+	'Connecticut',
+	'DC',
+	'Delaware',
+	'Florida',
+	'Georgia',
+	'GU', 
+	'Hawaii',
+	'Iowa', 
+	'Idaho', 
+	'Illinois', 
+	'Indiana', 
+	'Kansas', 
+	'Kentucky', 
+	'Louisiana', 
+	'Massachusetts', 
+	'Maryland', 
+	'Maine', 
+	'Michigan', 
+	'Minnesota', 
+	'Missouri', 
+	'MP', 
+	'Mississippi', 
+	'Montana', 
+	'North Carolina', 
+	'North Dakota', 
+	'Nebraska', 
+	'New Hampshire', 
+	'New Jersey', 
+	'New Mexico', 
+	'Nevada',
+	'New York', 
+	'Ohio', 
+	'Oklahoma', 
+	'Oregon',
+	'Pennsylvania', 
+	'PR', 
+	'Rhode Island', 
+	'South Carolina', 
+	'South Dakota', 
+	'Tennessee', 
+	'Texas', 
+	'Utah', 
+	'Virginia', 
+	'VI', 
+	'Vermont', 
+	'Washington', 
+	'Wisconsin',
+	'West Virginia',
+	'Wyoming',
+];
+var stateNewPos = new Array();  
+var statePos = new Array();
+var stateNewDeath = new Array();
+var stateDeath = new Array();
+
+
+
 function mapFunction() {
 	/*---FETCH STATE DATA AND DISPLAY MAP-----------------------------------------------------------------*/
 	var stateNewPos = new Array();  
 	var statePos = new Array();
 	var stateNewDeath = new Array();
 	var stateDeath = new Array();
-	var statesArray = [ 
-			'Alaska', 
-			'Alabama',
-			'Arkansas', 
-			'AS', 
-			'Arizona',
-			'California', 
-			'Colorado',
-			'Connecticut',
-			'DC',
-			'Delaware',
-			'Florida',
-			'Georgia',
-			'GU', 
-			'Hawaii',
-			'Iowa', 
-			'Idaho', 
-			'Illinois', 
-			'Indiana', 
-			'Kansas', 
-			'Kentucky', 
-			'Louisiana', 
-			'Massachusetts', 
-			'Maryland', 
-			'Maine', 
-			'Michigan', 
-			'Minnesota', 
-			'Missouri', 
-			'MP', 
-			'Mississippi', 
-			'Montana', 
-			'North Carolina', 
-			'North Dakota', 
-			'Nebraska', 
-			'New Hampshire', 
-			'New Jersey', 
-			'New Mexico', 
-			'Nevada',
-			'New York', 
-			'Ohio', 
-			'Oklahoma', 
-			'Oregon',
-			'Pennsylvania', 
-			'PR', 
-			'Rhode Island', 
-			'South Carolina', 
-			'South Dakota', 
-			'Tennessee', 
-			'Texas', 
-			'Utah', 
-			'Virginia', 
-			'VI', 
-			'Vermont', 
-			'Washington', 
-			'Wisconsin',
-			'West Virginia',
-			'Wyoming',
-	];
+
 	var x = 0;
 		// REFERENCE POINT
 		let requestURL = 'https://api.covidtracking.com/v1/states/current.json'; // --- CHANGED THE API --- //
@@ -92,16 +100,12 @@ function mapFunction() {
 				x++; 
 			}
 
-
-			
 			// Load Map
 			google.charts.load('current', {
 			  'packages':['geochart'],
 			  'mapsApiKey': 'AIzaSyD9coJ6yyDYIlJ1wq4RI62qBbd4zNNhing'
 			});
 			google.charts.setOnLoadCallback(drawVisualization);  
-
-
 		}   
 
     var max;
@@ -203,11 +207,24 @@ function mapFunction() {
     }
 }
 
-
 var errorTest = document.getElementById("google-visualization-errors-all-1");
 		// var m = 1;
-		
-		while (typeof(errorTest) != 'undefined' && errorTest != null) {
-			console.log("Error, reloading table"); mapFunction();
-		}	  
+while (typeof(errorTest) != 'undefined' && errorTest != null) {
+	console.log("Error, reloading table"); mapFunction();
+}
+
+function getStateInfo(){
+    var state = document.getElementById("state").value;
+    for (let j=0; j<=55; j++){
+        if(state === statesArray[j]){
+            newPositive = document.getElementById("mobile-state-newpos");
+	        newPositive.innerHTML = stateNewPos[j];
+            positive = document.getElementById("mobile-state-totalpos");
+			positive.innerHTML = statePos[j];
+			console.log(stateNewPos[j]);
+			console.log(statePos[j]);
+        }
+    }
+
+}
 	  
