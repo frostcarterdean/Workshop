@@ -3,13 +3,16 @@
 <head>
 	<meta charset="utf-8">
 	<title>World Stats - COVID-19 Travel Guide</title>
+	<link rel="shortcut icon" href="images/favicon.ico"/>
+	<link rel="stylesheet" href="main.css"></link>
 	<style>
+	@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 		body {
 			margin: 0;
 			background-color: #284D6D;
 			color: white; 
 			overflow: auto; 
-			font-family: Arial; /* Use different font later */
+			font-family: 'Franklin Gothic', sans-serif;
 		}
 		@media only screen and (max-width: 992px) {
 			table, thead, tbody, tr, th, td { /* Transforms tables into hamburgers; even though different tables are loaded between desktop and mobile this is still needed until fixed */
@@ -22,13 +25,15 @@
 		#header {
 			background-color: #3C8BB5;
 			text-align: right;
-			padding: .5em;
+			height: 45px;
+			padding-top: 1.5em;
 		}
 		.links {
-			margin-top: 0;
 			margin-right: 1em;
 			display: inline;
-			padding: .5em;
+			padding: 1.1em;
+			font-size: 1.2em;
+			font-family: 'Source Sans Pro', sans-serif;
 		}
 		@media only screen and (max-width: 992px) {
 			#header {
@@ -784,10 +789,11 @@
 	</script>
 </head>
 <body onload="worldwideStats()">
+	<img id="navlogo" src="images/covidlogo2.1.png">
 	<div id="header">
-		<a href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
-		<a href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
-		<a href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
+		<a href="index.php" class="links">Home</a>
+		<a href="usa.html" class="links">USA</a>
+		<a href="world.html" class="links">World</a>
 	</div>
 	<h1 style="text-align: center;">World COVID-19 Statistics</h1>
 	

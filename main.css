@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+		body {
+			margin: 0;
+			background-color: #284D6D;
+			color: white; 
+			overflow: auto; 
+			font-family: 'Franklin Gothic', sans-serif;
+		}
+		#header {
+			background-color: #3C8BB5;
+			text-align: right;
+			height: 45px;
+			padding-top: 1.5em;
+		}
+		.links {
+			margin-right: 1em;
+			display: inline;
+			padding: 1.1em;
+			font-size: 1.2em;
+			font-family: 'Source Sans Pro', sans-serif;
+		}
+		.links:hover {
+			background-color: #1D1D36;
+		}
+		#map {
+			width: 90%;
+			margin: auto;
+		}
+		#map div {
+			margin: auto;
+		}
+		#states {
+			width: 90%;
+			display: block;
+			margin: auto;
+			font-size: 3em;
+			text-align: center;
+		}
+		p {
+			display: inline;
+		}
+		table {
+			border: 1px solid white;
+			margin: auto;
+			width: 90%; table-layout: fixed;
+		}
+		th {
+			border: 1px solid white;
+			padding: 1em;
+		}
+		#resources-section {
+			margin: auto;
+			width: 30%;
+        }
+        #section {
+			margin: auto;
+            width: 90%;
+            display: flex;
+        }
+		
+		#search {
+			width: 100%;
+			display: flex;
+		}
+		#search input {
+			width: 100%;
+		}
+		#header a {
+			color: white;
+			text-decoration: none;
+		}
+		.table-header {
+			background-color: #1D1D36;
+		}
+		h1 {
+			text-align: center;
+			font-family: 'Source Sans Pro', sans-serif;
+		}
+		#navlogo {
+			padding-left: 20px;
+			padding-top:10px;
+  			width: 50px;
+  			float:left;
+		}
+		#counties-tables {
+			margin: auto;
+		}
+		
+		#counties-tables-select {
+			display: flex;
+			width: 90%;
+			margin: auto;	
+		}
+		
+		#counties-tables-select select {
+			width: 10%;
+			margin-right: .5em;
+        }
+        #countries-name {
+			text-align: center;
+		}
+		#countries-bio {
+			margin-top: 1.5em;
+			margin-left: 1em;
+			width: 40%;
+		}
+		#countries-bio p {
+			font-size: .8em;
+        }
+        
+		#search-sort-section {
+			margin: auto;
+			width: 90%;
+			display: flex;
+        }
+        #parameters {
+			margin-left: 1em;
+        }
+        
+        #search input {
+			width: 100%;
+		}
+		button {
+			background-color: #3C8BB5;
+			color: white;
+			border: none;
+			cursor: pointer;
+		}
+        
+			
+		@media only screen and (max-width: 992px) { 
+			table, thead, tbody, tr, th, td {
+				display: block; text-align: left;
+			}
+			h1 {
+				font-size: 3em;
+			}
+			#header { /* Adjust header on mobile */
+				text-align: center; 
+				display: flex; 
+				padding: 0;
+			}
+			.links {
+				margin: 0 1em 0 1em; 
+				text-align: center; 
+				width: 50%; 
+				font-size: 1.3em;
+				padding: .5em;
+			}
+			#map { /* Removes map on mobile */
+				display: none;
+			}
+			#navlogo { /* Removes nav logo on mobile */
+				display:none;
+			}
+			#resources-section {
+				display: block; margin: auto; width: 100%;
+			}
+			#search {
+                display: block; 
+                margin: auto; 
+                width: 90%; 
+                text-align: center;
+			}
+			#states-resources { /* Removes dropdown menu for selecting states normally on desktop next to search in resources section; the first dropdown on mobile is what state is selected and resources displayed */
+				display: none;
+			}
+			#search input {
+				text-align: center; width: 90%; 
+			}
+			input[type="text"] {
+				font-size: 3em;
+			}
+			#us-stats-desktop { /* Different tables for overall US stats displayed on desktop and mobile */
+				display: none;
+			}
+			#desktop-table {
+				display: none;
+			}
+			#counties-tables-select {
+				display: block;
+				width: 90%;
+				margin: auto;	
+			}
+			#counties-tables-select select {
+				width: 100%;
+				font-size: 3em;
+				text-align: center;
+			}
+			#counties-tables-select select {
+				width: 100%;
+				font-size: 3em;
+			}
+			#counties-tables-select select:nth-child(2) {
+				margin-top: .5em;
+            }
+            #section {
+				display: block;
+            }
+            #countries-bio {
+				display: block; margin-top: -1.3em;  margin-left: 0; width: 100%; font-size: 1em; text-align: center;
+            }
+            #search-sort-section {
+				display: block; margin: auto; width: 100%;
+            }
+            #parameters {
+				width: 100%; text-align: center; margin: auto; padding-top: 1em;
+			}
+			#parameters label {
+				width: 100%; margin-right: .9em;
+			}
+			#parameters p {
+				margin-right: 1em; margin-left: 1em;
+			}
+		}
+		@media only screen and (min-width: 993px) { /* Removes mobile table on desktop */
+			#states-stats-mobile {
+				display: none;
+			}
+			#map {
+			display: block;
+			margin: auto;
+			}
+		}
+
+		@media only screen and (min-width: 992px) {
+			#us-stats-mobile { /* Different tables for overall US stats displayed on desktop and mobile */
+				display: none;
+			}
+			#mobile-table {
+				display: none;
+			}
+		}
+		

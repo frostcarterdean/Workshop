@@ -3,13 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<title>COVID-19 Travel Guide</title>
+	<link rel="shortcut icon" href="images/favicon.ico"/>
+	<link rel="stylesheet" href="main.css"></link>
 	<style>
 		body {
 			margin: 0;
 			background-color: #284D6D;
 			color: white; 
 			overflow: auto; 
-			font-family: Arial; /* Should be changed later */
+			font-family: 'Franklin Gothic', sans-serif;
 		}
 		@media only screen and (max-width: 992px) {
 			h1 {
@@ -19,21 +21,28 @@
 		#header {
 			background-color: #3C8BB5;
 			text-align: right;
-			padding: .5em;
+			height: 45px;
+			padding-top: 1.5em;
 		}
 		.links {
-			margin-top: 0;
 			margin-right: 1em;
 			display: inline;
-			padding: .5em;
-			cursor: pointer;
+			padding: 1.1em;
+			font-size: 1.2em;
+			font-family: 'Source Sans Pro', sans-serif;
 		}
 		@media only screen and (max-width: 992px) {
 			#header {
-				text-align: center; display: flex; padding: 0;
+				text-align: center; 
+				display: flex; 
+				padding: 0;
 			}
 			.links {
-				margin: 0 1em 0 1em; text-align: center; width: 50%; font-size: 1.3em;
+				margin: 0 1em 0 1em; 
+				text-align: center; 
+				width: 50%; 
+				font-size: 1.3em;
+				padding: .5em;
 			}
 		}
 		.links:hover {
@@ -84,6 +93,7 @@
 			margin-top: 1em;
 			margin-left: .5em;
 			margin-right: .5em;
+			font-family: 'Source Sans Pro', sans-serif;
 		}
 		#top-article-description a, .news-article-description a {
 			margin: 1em 0 0 1em;
@@ -115,6 +125,7 @@
 				margin-left: 0;
 				width: 100%;
 				text-align: center;
+				font-family: 'Source Sans Pro', sans-serif;
 			}
 			#news-articles-section {
 				flex-wrap: nowrap;
@@ -230,11 +241,11 @@
 	?>
 </head>
 <body>
-
+<img id="navlogo" src="images/covidlogo2.1.png">
 	<div id="header">
-		<a href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
-		<a href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
-		<a href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
+	<a href="index.php" class="links">Home</a>
+		<a href="usa.html" class="links">USA</a>
+		<a href="world.html" class="links">World</a>
 	</div>
 	
 	<div <?php fromTable('ArticleURL', 1, 1); ?> id="top-article-section"> 
