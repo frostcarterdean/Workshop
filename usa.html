@@ -3,350 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<title>US Resources - COVID-19 Travel Guide</title>
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
-		body {
-			margin: 0;
-			background-color: #284D6D;
-			color: white; 
-			overflow: auto; 
-			font-family: Arial;
-		}
-
-		@media only screen and (max-width: 992px) { /* Transform resources table into hamburger on mobile, unlike other tables on page there's no alternates to switch between */
-			table, thead, tbody, tr, th, td {
-				display: block; text-align: left;
-			}
-			h1 {
-				font-size: 3em;
-			}
-		}
-		#header {
-			background-color: #3C8BB5;
-			text-align: right;
-			padding: .5em;
-		}
-		.links {
-			margin-top: 0;
-			margin-right: 1em;
-			display: inline;
-			padding: .5em;
-		}
-		@media only screen and (max-width: 992px) { /* Adjust header on mobile */
-			#header {
-				text-align: center; display: flex; padding: 0;
-			}
-			.links {
-				margin: 0 1em 0 1em; text-align: center; width: 50%; font-size: 1.3em;
-			}
-		}
-		.links:hover {
-			background-color: #1D1D36;
-		}
-		
-		/* ---------------------------------- */
-		
-		#map {
-			width: 90em;
-			margin: auto;
-		}
-		#map img {
-			height: 50%; width: 50%;
-			margin-left: auto;
-			margin-right: auto;
-			display: block;
-		}
-		@media only screen and (max-width: 992px) { /* Removes map on mobile */
-			#map {
-				display: none;
-			}
-		}
-		@media only screen and (min-width: 993px) { /* Removes mobile table on desktop */
-			#states-stats-mobile {
-				display: none;
-			}
-			#map {
-			display: block;
-			margin: auto;
-			}
-
-		}
-		
-		#states {
-			width: 90%;
-			display: block;
-			margin: auto;
-			font-size: 3em;
-			text-align: center;
-		}
-		
-		/* ---------------------------------- */
-		
-		p {
-			display: inline;
-		}
-		table {
-			border: 1px solid white;
-			margin: auto;
-			width: 90%; table-layout: fixed;
-		}
-		th {
-			border: 1px solid white;
-			padding: 1em;
-		}
-		#resources-section {
-			margin: auto;
-			width: 30%;
-		}
-		@media only screen and (max-width: 992px) {
-			#resources-section {
-				display: block; margin: auto; width: 100%;
-			}
-		}
-		#search {
-			width: 100%;
-			display: flex;
-		}
-		@media only screen and (max-width: 992px) {
-			#search {
-				display: block; margin: auto; width: 90%; text-align: center;
-			}
-			#states-resources { /* Removes dropdown menu for selecting states normally on desktop next to search in resources section; the first dropdown on mobile is what state is selected and resources displayed */
-				display: none;
-			}
-		}
-		#search input {
-			width: 100%;
-		}
-		@media only screen and (max-width: 992px) {
-			#search input {
-				text-align: center; width: 90%; 
-			}
-			input[type="text"] {
-				font-size: 3em;
-			}
-			#us-stats-desktop { /* Different tables for overall US stats displayed on desktop and mobile */
-				display: none;
-			}
-		}
-		@media only screen and (min-width: 992px) {
-			#us-stats-mobile { /* Different tables for overall US stats displayed on desktop and mobile */
-				display: none;
-			}
-		}
-		#header a {
-			color: white;
-			text-decoration: none;
-		}
-		.table-header {
-			background-color: #1D1D36;
-		}
-		h1 {
-			text-align: center;
-			
-		}
-		#map div {
-			margin: auto;
-		}
-		
-		/* ----------------------------------------- */
-		
-		#counties-tables {
-			margin: auto;
-		}
-		
-		#counties-tables-select {
-			display: flex;
-			width: 90%;
-			margin: auto;	
-		}
-		
-		#counties-tables-select select {
-			width: 10%;
-			margin-right: .5em;
-		}
-		
-		@media only screen and (max-width: 992px) {
-			#desktop-table {
-				display: none;
-			}
-			#counties-tables-select {
-				display: block;
-				width: 90%;
-				margin: auto;	
-			}
-			#counties-tables-select select {
-				width: 100%;
-				font-size: 3em;
-				text-align: center;
-			}
-			#counties-tables-select select {
-				width: 100%;
-				font-size: 3em;
-			}
-			#counties-tables-select select:nth-child(2) {
-				margin-top: .5em;
-			}
-		}
-
-		@media only screen and (min-width: 992px) {
-			#mobile-table {
-				display: none;
-			}
-		}
-		
-		/* ----------------------------------------- */
-		
-		#state-mobile-select {
-			width: 90%;
-			font-size: 3em;
-			text-align: center;
-			margin: auto;
-			display: block;
-		}
-		
-	</style>
+	<link rel="shortcut icon" href="images/favicon.ico"/>
+	<link rel="stylesheet" href="usa.css"></link>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript" src="map.js"></script>
 	<script type="text/javascript" src="usa.js"></script>
-	<script>
-	
-	var placeholder;
-	
-	function countiesTable() {
-	
-		let requestURL = 'https://data.covidactnow.org/latest/us/counties.WEAK_INTERVENTION.json';
-		// API URL
-		
-		let request = new XMLHttpRequest(); 
-		// XMLHttpRequest (XHR) object assigned to variable
-		
-		request.open('GET', requestURL); 
-		// XMLHttpRequest.open() function, first argument is a method and second is a URL (string variable here)
-		
-		request.responseType = 'json'; 
-		// "The response is a JavaScript object created by parsing the contents of received data as JSON."
-		
-		request.send(); 
-		// Sends request to server
-		
-		request.onload = function() { // Occurs after send function above
-			const result = request.response;
-			placeholder = request.response;
-			console.log(placeholder);
-			countiesSelectOutput();
-		}
-	}
-		
-		function countiesSelectOutput() {
-			var state = document.getElementById("state").value;
-			var county = document.getElementById("county");
-						
-			if (county.childElementCount > 1) {
-				while (county.firstChild) {
-					county.removeChild(county.firstChild);
-				}
-			}
-			
-			for (x = 0; x < placeholder.length; x++) {
-				if (state == placeholder[x].stateName) {
-					newOption = document.createElement("option");
-					newOption.innerHTML = placeholder[x].countyName;
-					newOption.value = placeholder[x].countyName;
-					document.getElementById("county").appendChild(newOption);
-				}
-			}
-			countiesTableOutput();
-		}
-	
-		function countiesTableOutput() {
-			var countyValue = document.getElementById("county").value;
-			
-			for (x = 0; x < placeholder.length; x++) {
-				if (countyValue == placeholder[x].countyName) {
-					for (y = 0; y < document.getElementsByClassName("name").length; y++) {
-						document.getElementsByClassName("name")[y].innerHTML = placeholder[x].countyName;
-					}
-					for (y = 0; y < document.getElementsByClassName("population").length; y++) {
-						document.getElementsByClassName("population")[y].innerHTML = placeholder[x].actuals.population;
-					}
-					for (y = 0; y < document.getElementsByClassName("confirmed").length; y++) {
-						document.getElementsByClassName("confirmed")[y].innerHTML = placeholder[x].actuals.cumulativeConfirmedCases;
-					}
-					for (y = 0; y < document.getElementsByClassName("deaths").length; y++) {
-						document.getElementsByClassName("deaths")[y].innerHTML = placeholder[x].actuals.cumulativeDeaths;
-					}
-					for (y = 0; y < document.getElementsByClassName("bed-current-capacity").length; y++) {
-						document.getElementsByClassName("bed-current-capacity")[y].innerHTML = placeholder[x].actuals.hospitalBeds.capacity;
-					}
-					for (y = 0; y < document.getElementsByClassName("bed-max-capacity").length; y++) {
-						document.getElementsByClassName("bed-max-capacity")[y].innerHTML = placeholder[x].actuals.hospitalBeds.totalCapacity;
-					}
-				}
-			}	
-		}
-		
-		// ---------------------------------------------------------------
-		// ---------------------------------------------------------------
-		
-		// NEW US MOBILE TABLE STATS
-		
-		function stateSelectMobileTable() {
-		
-			let requestURL = 'https://api.covidtracking.com/v1/states/current.json'; 
-			// API URL
-			
-			let request = new XMLHttpRequest(); 
-			// XMLHttpRequest (XHR) object assigned to variable
-			
-			request.open('GET', requestURL); 
-			// XMLHttpRequest.open() function, first argument is a method and second is a URL (string variable here)
-			
-			request.responseType = 'json'; 
-			// "The response is a JavaScript object created by parsing the contents of received data as JSON."
-			
-			request.send(); 
-			// Sends request to server     
-			
-			request.onload = function() { // Occurs after send function above
-				var result = request.response;
-				console.log(result);
-				
-				// var statesStatsMobileTable = document.createElement("table");
-				// var statesStatsMobileTableBody = statesStatsMobileTable("tbody");
-				// var statesStatsMobileTableRow = statesStatsMobileTable("tr");
-				// var statesStatsMobileTableCell = statesStatsMobileTable("th");
-				
-				for (x = 0; x < result.length; x++) {
-					if (document.getElementById("state-mobile-select").value == result[x].state) {
-						document.getElementById("mobile-stats-positive").innerHTML = result[x].positive;
-						document.getElementById("mobile-stats-recovered").innerHTML = result[x].recovered;
-						document.getElementById("mobile-stats-deaths").innerHTML = result[x].death;
-					}
-				}
-				
-		}
-		
-	}
-	
-	// ---------------------------------------------------------------
-	// ---------------------------------------------------------------
-
-		countiesTable();
-		
-	</script>
 </head>
 <body onload="mapFunction(); usaTable(); stateSelectMobileTable()">
+	<img id="navlogo" src="images/covidlogo2.1.png">
 	<div id="header">
 		<a href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
 		<a href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
 		<a href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
 	</div>
 	
-	<!-- ------------------------------ -->
-	
-	<!-- Overall US stats with different tables displayed depending if user is on desktop or mobile through media query and "display: none;" -->
-	
+<!-------- US STATISTICS-------------------------------------------------->
 	<h1>The United States</h1>
 	<table id="us-stats-desktop">
 		<tbody>
@@ -369,85 +40,78 @@
 	<table id="us-stats-mobile">
 		<tbody>
 			<tr>
-				<th class="table-header">Positive Cases</th>
-				<th>36,297,838</th>
-			</tr>
-			<tr>
-				<th class="table-header">Recovered Cases</th>
-				<th>27,314,855</th>
-			</tr>
-			<tr>
-				<th class="table-header">Deaths</th>
-				<th>1,058,130</th>
+				<th class="table-header">New Positive Cases</th>
+				<th id="usaNewPosM"></th>
+				<th class="table-header">Total Positive Cases</th>
+				<th id="usaPosM"></th>
+				<th class="table-header">Total Recovered</th>
+				<th id="usaRecM"></th>
+				<th class="table-header">New Deaths</th>
+				<th id="usaNewDeathM"></th>
+				<th class="table-header">Total Deaths</th>
+				<th id="usaDeathM"></th>
 			</tr>
 		</tbody>
 	</table>
-	
-	<!-- ------------------------------ -->
-	
-	<!-- Map -->
-	
-	<br><br>
 
+<!-----------DISPLAY MAP ON DESKTOP----------------------------------------->
 	<div id="map"></div>
 	
-	
-	<!-- ------------------------------ -->
-	
-	<!-- Table only shown on mobile that displays stats for a state in place of hovering over a map -->
-	
+<!-----------STATE DROPDOWN MENU AND COUNTY INFO --------------------------->	
+	<br><br>
+<!-----------STATE INFO FOR MOBILE --------------------------->	
 	<div id="states-stats-mobile"> <!-- NEW, THIS IS MODIFIED FOR JAVASCRIPT -->
-	<select id="state-mobile-select" onchange="stateSelectMobileTable()">
-			<option value="AL">Alabama</option>
-			<option value="AK">Alaska</option>
-			<option value="AZ">Arizona</option>
-			<option value="AR">Arkansas</option>
-			<option value="CA">California</option>
-			<option value="CO">Colorado</option>
-			<option value="CT">Connecticut</option>
-			<option value="DE">Delaware</option>
-			<option value="FL">Florida</option>
-			<option value="GA">Georgia</option>
-			<option value="HI">Hawaii</option>
-			<option value="ID">Idaho</option>
-			<option value="IL">Illinois</option>
-			<option value="IN">Indiana</option>
-			<option value="IA">Iowa</option>
-			<option value="KS">Kansas</option>
-			<option value="KY">Kentucky</option>
-			<option value="LA">Louisiana</option>
-			<option value="ME">Maine</option>
-			<option value="MD">Maryland</option>
-			<option value="MA">Massachusetts</option>
-			<option value="MI">Michigan</option>
-			<option value="MN">Minnesota</option>
-			<option value="MS">Mississippi</option>
-			<option value="MO">Missouri</option>
-			<option value="MT">Montana</option>
-			<option value="NE">Nebraska</option>
-			<option value="NV">Nevada</option>
-			<option value="NH">New Hampshire</option>
-			<option value="NJ">New Jersey</option>
-			<option value="NM">New Mexico</option>
-			<option value="NY">New York</option>
-			<option value="NC">North Carolina</option>
-			<option value="ND">North Dakota</option>
-			<option value="OH">Ohio</option>
-			<option value="OK">Oklahoma</option>
-			<option value="OR">Oregon</option>
-			<option value="PA">Pennsylvania</option>
-			<option value="RI">Rhode Island</option>
-			<option value="SC">South Carolina</option>
-			<option value="SD">South Dakota</option>
-			<option value="TN">Tennessee</option>
-			<option value="TX">Texas</option>
-			<option value="UT">Utah</option>
-			<option value="VT">Vermont</option>
-			<option value="VA">Virginia</option>
-			<option value="WA">Washington</option>
-			<option value="WV">West Virginia</option>
-			<option value="WI">Wisconsin</option>
-			<option value="WY">Wyoming</option>
+		<select id="state-mobile-select" onchange="stateSelectMobileTable()">
+				<option value="AL">Alabama</option>
+				<option value="AK">Alaska</option>
+				<option value="AZ">Arizona</option>
+				<option value="AR">Arkansas</option>
+				<option value="CA">California</option>
+				<option value="CO">Colorado</option>
+				<option value="CT">Connecticut</option>
+				<option value="DE">Delaware</option>
+				<option value="FL">Florida</option>
+				<option value="GA">Georgia</option>
+				<option value="HI">Hawaii</option>
+				<option value="ID">Idaho</option>
+				<option value="IL">Illinois</option>
+				<option value="IN">Indiana</option>
+				<option value="IA">Iowa</option>
+				<option value="KS">Kansas</option>
+				<option value="KY">Kentucky</option>
+				<option value="LA">Louisiana</option>
+				<option value="ME">Maine</option>
+				<option value="MD">Maryland</option>
+				<option value="MA">Massachusetts</option>
+				<option value="MI">Michigan</option>
+				<option value="MN">Minnesota</option>
+				<option value="MS">Mississippi</option>
+				<option value="MO">Missouri</option>
+				<option value="MT">Montana</option>
+				<option value="NE">Nebraska</option>
+				<option value="NV">Nevada</option>
+				<option value="NH">New Hampshire</option>
+				<option value="NJ">New Jersey</option>
+				<option value="NM">New Mexico</option>
+				<option value="NY">New York</option>
+				<option value="NC">North Carolina</option>
+				<option value="ND">North Dakota</option>
+				<option value="OH">Ohio</option>
+				<option value="OK">Oklahoma</option>
+				<option value="OR">Oregon</option>
+				<option value="PA">Pennsylvania</option>
+				<option value="RI">Rhode Island</option>
+				<option value="SC">South Carolina</option>
+				<option value="SD">South Dakota</option>
+				<option value="TN">Tennessee</option>
+				<option value="TX">Texas</option>
+				<option value="UT">Utah</option>
+				<option value="VT">Vermont</option>
+				<option value="VA">Virginia</option>
+				<option value="WA">Washington</option>
+				<option value="WV">West Virginia</option>
+				<option value="WI">Wisconsin</option>
+				<option value="WY">Wyoming</option>
 		</select>
 		<br>
 		
@@ -478,20 +142,11 @@
 			</tbody>
 		</table>
 	</div>
+<!-----------COUNTY (AND MOBILE-ONLY STATE SELECTOR FOR IDENTIFYING COUNTIES) SELECTOR AND INFO--------------------------->	
 	
-	<!-- -------------------------------------- -->
-	
-	<!-- ------------------------------ -->
-	
-	<!-- Resources from API displayed for each county -->
-	<!-- On desktop, there's a search bar and a list dropdown, the latter is how the user selects a state where then its counties and their resources are displayed -->
-	<!-- On mobile, there's just a search bar. The state selected is from #states select element above in this case -->
-	
-		<!-- ------------------------------ -->
-	
-	<br><br>
+	<br>
 	<div id="counties-tables-select">
-		<select id="state" onchange="countiesSelectOutput()">
+		<select id="state" onchange="countiesSelectOutput(); getStateInfo()">
 			<option value="Alabama">Alabama</option>
 			<option value="Alaska">Alaska</option>
 			<option value="Arizona">Arizona</option>
@@ -546,8 +201,6 @@
 		<select id="county" onchange="countiesTableOutput()">
 		</select>
 	</div>
-	
-	<!-- ------------------------------ -->
 	
 	<br>
 	<div id="counties-tables">

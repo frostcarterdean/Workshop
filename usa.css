@@ -175,3 +175,11 @@
 			}
 		}
 		
+		#state-mobile-select {
+						width: 90%;
+						font-size: 3em;
+						text-align: center;
+						margin: auto;
+						display: block;
+				}
+		
