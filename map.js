@@ -65,11 +65,6 @@ var stateDeath = new Array();
 
 function mapFunction() {
 	/*---FETCH STATE DATA AND DISPLAY MAP-----------------------------------------------------------------*/
-	var stateNewPos = new Array();  
-	var statePos = new Array();
-	var stateNewDeath = new Array();
-	var stateDeath = new Array();
-
 	var x = 0;
 		// REFERENCE POINT
 		let requestURL = 'https://api.covidtracking.com/v1/states/current.json'; // --- CHANGED THE API --- //
@@ -212,6 +207,8 @@ var errorTest = document.getElementById("google-visualization-errors-all-1");
 while (typeof(errorTest) != 'undefined' && errorTest != null) {
 	console.log("Error, reloading table"); mapFunction();
 }
+
+
 
 function getStateInfo(){
     var state = document.getElementById("state").value;
