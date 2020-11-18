@@ -4,7 +4,7 @@ function mapFunction() {
 	var statePos = new Array();
 	var stateNewDeath = new Array();
 	var stateDeath = new Array();
-	var statesArray = [ // --- CHANGED POSITION OF FIRST FEW ABBREVIATIONS IN ARRAY --- //
+	var statesArray = [ 
 			'Alaska', 
 			'Alabama',
 			'Arkansas', 
@@ -64,7 +64,6 @@ function mapFunction() {
 	];
 	var x = 0;
 		// REFERENCE POINT
-		// let requestURL = 'https://api.covidtracking.com/v1/states/' + statesArray[x] + '/current.json';
 		let requestURL = 'https://api.covidtracking.com/v1/states/current.json'; // --- CHANGED THE API --- //
 			  // API URL
 		let request = new XMLHttpRequest(); 
